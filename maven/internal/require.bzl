@@ -42,8 +42,10 @@ def _install(deps, verbose):
         rule = d.pop("rule", None)
         if not rule:
             fail("Missing attribute 'rule': %s" % name)
-        if rule == "new_http_archive" or rule = "http_archive":
+        if rule == "new_http_archive" or rule == "http_archive":
             rule = http_archive
+            if verbose: print("Loading %s)" % name)
+            rule(**d)
         elif hasattr(native, rule):
             rule = getattr(native, rule)
             if verbose: print("Loading %s)" % name)
