@@ -44,11 +44,11 @@ def _install(deps, verbose):
             fail("Missing attribute 'rule': %s" % name)
         if rule == "new_http_archive" or rule == "http_archive":
             rule = http_archive
-            if verbose: print("Loading %s)" % name)
+            if verbose: print("Loading %s, %s)" % (name, d))
             rule(**d)
         elif hasattr(native, rule):
             rule = getattr(native, rule)
-            if verbose: print("Loading %s)" % name)
+            if verbose: print("Loading %s, %s)" % (name, d))
             rule(**d)
         else:
             d["rule"] = rule
